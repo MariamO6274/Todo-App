@@ -13,7 +13,7 @@ function App() {
       }
       let todo = { id: id, text: text, completed: false, important: false };
       let newTodos = [todo, ...todos];
-      console.log(newTodos)
+      //console.log(newTodos)
       setTodos(newTodos);
     };
 
@@ -23,13 +23,33 @@ function App() {
 
     }
 
+    const completeTodo = (id) => {
+      //console.log(id)
+      let updateTodos = todos.map((todo) => {
+        if(todo.id === id) {
+          todo.completed = !todo.completed;
+        }
+        return todo
+      })
+      setTodos(updateTodos);
+
+    }
+
   return (
     <div className="todo-app">
-      <h1>Todo List</h1>
-     <TodoForm addTodo={addTodo}/>
-     {todos.map((todo)=>{
-      return <TodoItem removeTodo={removeTodo} todo={todo} key={todo.id}/>
-     })}
+      <h1 style={{ color: "rgba(17, 122, 255, 1)" }}>Todo List</h1>
+      <TodoForm addTodo={addTodo} />
+      <hr className="seperator" />
+      {todos.map((todo) => {
+        return (
+          <TodoItem
+            removeTodo={removeTodo}
+            completeTodo={completeTodo}
+            todo={todo}
+            key={todo.id}
+          />
+        );
+      })}
     </div>
   );
 }
