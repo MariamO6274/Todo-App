@@ -21,7 +21,7 @@ function App() {
       <h1>Todo List</h1>
      <TodoForm addTodo={addTodo}/>
      {todos.map((todo)=>{
-      return <TodoItem todo={todo}/>
+      return <TodoItem todo={todo} key={todo.id}/>
      })}
     </div>
   );
